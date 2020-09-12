@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestService } from '../service/rest.service';
+import { airportlist } from 'data/dummy';
 
 @Component({
   selector: 'app-main',
@@ -8,6 +9,8 @@ import { RestService } from '../service/rest.service';
 })
 export class MainComponent implements OnInit {
 
+
+  public list: Array<Object> = airportlist;
   expanded = false;
 
   constructor(
@@ -16,7 +19,7 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.getHeroes();
+    // this.service.getHeroes();
   }
 
   click() {
