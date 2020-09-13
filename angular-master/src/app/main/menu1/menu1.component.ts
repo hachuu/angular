@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { airportlist } from '../../../data/dummy';
 @Component({
   selector: 'app-menu1',
@@ -8,23 +9,35 @@ import { airportlist } from '../../../data/dummy';
 export class Menu1Component implements OnInit, OnDestroy {
 
   public list: Array<Object> = airportlist;
-  public test: string;
+  public test;
+  public filteredList;
 
   // @ViewChild inputEl 
+  @ViewChild("inputEl") inputEl: ElementRef;
 
   constructor() { }
 
   ngOnInit(): void {
     console.log(airportlist.length);
-    this.test = airportlist[0].code;
-    airportlist.map(x=>{
-      console.log(x.code);
-    });
+    console.log(this.inputEl);
+    // this.test = airportlist[0].code;
+    // this.filteredList = airportlist.filter(x=> {
+    //   if (x.code.indexOf(this.test) > -1) {
+    //     return x;
+    //   }
+    // });
   }
 
-  // keyDown(event:KeyboardEvent) {
-  //   this.test = input.value 
-  // }
+  keyUp(event:KeyboardEvent) {
+    console.log(event);
+    // this.test = event;//this.inputEl.nativeElement.value;
+    this.filteredList = airportlist.filter(x=> {
+      if (x.code.indexOf(this.test) === 0) {
+        return x;
+      }
+    });
+    console.log(this.filteredList.length);
+  }
 
   ngOnDestroy() {
   }
