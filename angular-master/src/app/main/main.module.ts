@@ -6,12 +6,14 @@ import { Menu3Component } from './menu3/menu3.component';
 import { MainRouterModule } from './main.router.module';
 import { RestService } from '../service/rest.service';
 import { MainComponent } from './main.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [MainComponent, Menu1Component],
   imports: [
     CommonModule,
-    MainRouterModule
+    MainRouterModule,
+    FormsModule
   ],
   providers: [
     RestService

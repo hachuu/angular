@@ -1,5 +1,5 @@
 공항 리스트 가져오기
-<input [(ngModel)]="test"/>
+<input #inputEl (ngModelChange)="test = $event" [(ngModel)]="test"/>
 <ng-container *ngFor="let airport of list">
     <h1>{{airport.code}}</h1>
 </ng-container>

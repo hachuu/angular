@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { airportlist } from '../../../data/dummy';
 @Component({
   selector: 'app-menu1',
@@ -8,7 +8,10 @@ import { airportlist } from '../../../data/dummy';
 export class Menu1Component implements OnInit, OnDestroy {
 
   public list: Array<Object> = airportlist;
-  public test;
+  public test: string;
+
+  // @ViewChild inputEl 
+
   constructor() { }
 
   ngOnInit(): void {
@@ -18,6 +21,10 @@ export class Menu1Component implements OnInit, OnDestroy {
       console.log(x.code);
     });
   }
+
+  // keyDown(event:KeyboardEvent) {
+  //   this.test = input.value 
+  // }
 
   ngOnDestroy() {
   }
