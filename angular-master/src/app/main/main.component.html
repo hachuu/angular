@@ -1,10 +1,10 @@
 <div class="btn-group">
     <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" (click)="click()" [attr.aria-expanded]="expanded">
-      Right-aligned menu
+      MENU
     </button>
     <div [ngClass]="{'dropdown-menu dropdown-menu-right': true, 'show': expanded}">
-      <button class="dropdown-item" type="button" [routerLink]="['/main/menu1']">메뉴1</button>
-      <button class="dropdown-item" type="button" [routerLink]="['/main/menu2']">메뉴2</button>
+      <button class="dropdown-item" type="button" [routerLink]="['/main/menu1']">자동완성</button>
+      <button class="dropdown-item" type="button" [routerLink]="['/main/menu2']">달력</button>
       <button class="dropdown-item" type="button" [routerLink]="['/main/menu3']">메뉴3</button>
     </div>
   </div>

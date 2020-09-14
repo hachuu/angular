@@ -32,7 +32,7 @@ export class Menu1Component implements OnInit, OnDestroy {
     console.log(event);
     // this.test = event;//this.inputEl.nativeElement.value;
     this.filteredList = airportlist.filter(x=> {
-      if (x.code.indexOf(this.test) === 0) {
+      if (x.code.indexOf(this.test) === 0 || x.code.toLowerCase().indexOf(this.test.toLowerCase()) === 0) {
         return x;
       }
     });
