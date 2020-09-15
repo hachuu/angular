@@ -20,12 +20,6 @@ export class Menu1Component implements OnInit, OnDestroy {
   ngOnInit(): void {
     console.log(airportlist.length);
     console.log(this.inputEl);
-    // this.test = airportlist[0].code;
-    // this.filteredList = airportlist.filter(x=> {
-    //   if (x.code.indexOf(this.test) > -1) {
-    //     return x;
-    //   }
-    // });
   }
 
   keyUp(event:KeyboardEvent) {

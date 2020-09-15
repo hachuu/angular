@@ -2,7 +2,7 @@
     <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" (click)="click()" [attr.aria-expanded]="expanded">
       MENU
     </button>
-    <div [ngClass]="{'dropdown-menu dropdown-menu-right': true, 'show': expanded}">
+    <div [ngClass]="{'dropdown-menu dropdown-menu-left': true, 'show': expanded}">
       <button class="dropdown-item" type="button" [routerLink]="['/main/menu1']">자동완성</button>
       <button class="dropdown-item" type="button" [routerLink]="['/main/menu2']">달력</button>
       <button class="dropdown-item" type="button" [routerLink]="['/main/menu3']">메뉴3</button>
