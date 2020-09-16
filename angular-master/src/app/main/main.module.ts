@@ -9,7 +9,7 @@ import { MainComponent } from './main.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [MainComponent, Menu1Component],
+  declarations: [MainComponent, Menu1Component, Menu2Component, Menu3Component],
   imports: [
     CommonModule,
     MainRouterModule,
@@ -19,7 +19,7 @@ import { FormsModule } from '@angular/forms';
     RestService
   ],
   exports: [
-    MainComponent
+    MainComponent,
   ]
 })
 export class MainModule { }

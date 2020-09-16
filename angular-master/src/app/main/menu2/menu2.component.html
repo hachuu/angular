@@ -1,1 +1,26 @@
-<p>menu2 works!</p>
+<div class="month">
+    <ul>
+        <li class="prev">&#10094;</li>
+        <li class="next">&#10095;</li>
+        <li>{{currentMonth}}<br>
+            <span style="font-size:18px">{{currentYear}}</span>
+        </li>
+    </ul>
+</div>
+<ul class="weekdays">
+<li>M</li>
+<li>T</li>
+<li>W</li>
+<li>T</li>
+<li>F</li>
+<li>S</li>
+<li>S</li>
+</ul>
+<ul class="days">
+    <ng-container *ngFor="let weeks of totalCalLinesList">
+        <ng-container *ngFor="let days of weeks">
+        <li>{{days}}</li>
+        </ng-container>
+    </ng-container>
+<!-- <li><span class="active">10</span></li> -->
+</ul>

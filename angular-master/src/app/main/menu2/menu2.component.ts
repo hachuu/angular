@@ -8,6 +8,9 @@ import { map } from 'rxjs/operators';
 })
 export class Menu2Component implements OnInit {
 
+  public totalCalLinesList = [];
+  public currentMonth: string;
+  public currentYear: string;
   constructor() { }
 
   ngOnInit(): void {
@@ -22,6 +25,9 @@ export class Menu2Component implements OnInit {
     console.log('month : ', month);
     console.log('date : ', date);
     console.log('day : ', day);
+
+    this.currentMonth = month;
+    this.currentYear = year;
 
     // const weekDays = [0, 1, 2, 3, 4, 5, 6];
 
@@ -43,16 +49,22 @@ export class Menu2Component implements OnInit {
 
     const totalCalLines: number[] = new Array(middleLine + 2);
     const weekDays: number[] = new Array(7);
-    totalCalLines.map( (line, lIndex) => {
-      weekDays.map( (week, wIndex) => {
-        const row = new Array();
+    let dateValue = 0;
+    for (let lIndex = 0; lIndex < totalCalLines.length; lIndex++) {
+      const row = new Array();
+      for (let wIndex = 0; wIndex < weekDays.length; wIndex++) {
+        // row = [];
+        // dateValue = dateValue + 1;
         if ((lIndex === 0 && firstDateMonthCnt > wIndex) || (lIndex === totalCalLines.length - 1 && lastDateMonthCnt < wIndex)) {
-          row.push('');
+          row[wIndex] = '♥';
         } else {
-          row.push('값');
+          dateValue = dateValue + 1;
+          row[wIndex] = dateValue.toString();
         }
-      });
-    });
+      }
+      this.totalCalLinesList[lIndex] = row;
+    }
+    console.log(this.totalCalLinesList);
   }
 
 }
