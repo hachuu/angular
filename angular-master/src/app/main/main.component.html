@@ -1,34 +1,22 @@
-<div class="btn-group">
-    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" (click)="click()" [attr.aria-expanded]="expanded">
-      MENU
-    </button>
-    <div [ngClass]="{'dropdown-menu dropdown-menu-left': true, 'show': expanded}">
-      <button class="dropdown-item" type="button" [routerLink]="['/main/menu1']">자동완성</button>
-      <button class="dropdown-item" type="button" [routerLink]="['/main/menu2']">달력</button>
-      <button class="dropdown-item" type="button" [routerLink]="['/main/menu3']">메뉴3</button>
-    </div>
+<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-pills card-header-pills">
+      <li class="nav-item" *ngFor="let menu of menuList; let i = index;">
+        <a [ngClass]="{'nav-link': true, 'active': currentURL === menu.router || i === menuIdx}" 
+          href="#" (click)="changeMenu(i)"
+          [routerLink]="menu.router">{{menu.id}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
   </div>
-
-  <div class="card text-center">
-    <div class="card-header">
-      <ul class="nav nav-pills card-header-pills">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Active</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
+</div>
 <!-- <div>
     <button class="btn btn-primary" [routerLink]="['/main/menu1']">메뉴1</button>
     <button class="btn btn-primary" [routerLink]="['/main/menu2']">메뉴2</button>

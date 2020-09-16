@@ -11,9 +11,11 @@ export class Menu1Component implements OnInit, OnDestroy {
   public list: Array<Object> = airportlist;
   public test;
   public filteredList;
+  public expanded = false;
 
   // @ViewChild inputEl 
   @ViewChild("inputEl") inputEl: ElementRef;
+  
 
   constructor() { }
 
@@ -23,14 +25,20 @@ export class Menu1Component implements OnInit, OnDestroy {
   }
 
   keyUp(event:KeyboardEvent) {
-    console.log(event);
-    // this.test = event;//this.inputEl.nativeElement.value;
-    this.filteredList = airportlist.filter(x=> {
-      if (x.code.indexOf(this.test) === 0 || x.code.toLowerCase().indexOf(this.test.toLowerCase()) === 0) {
-        return x;
-      }
-    });
+    const inputValue = this.inputEl.nativeElement.value;
+    if (!!inputValue) {
+      this.filteredList = airportlist.filter(x=> {
+        if (x.code.indexOf(this.test) > 0 || (/^[a-zA-Z]*$/.test(inputValue) && x.code.toLowerCase().indexOf(this.test.toLowerCase()) === 0)) {
+          return x;
+        }
+      });
+    }
     console.log(this.filteredList.length);
+  }
+
+  // 메뉴 펼치기/닫기
+  btnExpandedclick() {
+    this.expanded = !this.expanded;
   }
 
   ngOnDestroy() {

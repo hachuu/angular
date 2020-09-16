@@ -8,11 +8,11 @@ import { map } from 'rxjs/operators';
 })
 export class Menu2Component implements OnInit {
 
-  public totalCalLinesList = [];
-  public currentMonth: string;
-  public currentYear: string;
-  public currentDate: string;
-  public inputDate: string;
+  public totalCalLinesList = [];  // 달력 li array
+  public currentMonth: string;    // 현재 달
+  public currentYear: string;     // 현재 년
+  public currentDate: string;     // 현재 날짜
+  public inputDate: string;       // 입력 날짜
   constructor() {
     // getDate()	날짜 중 일자를 숫자로 반환함. (1 ~ 31)
     // getDay()	날짜 중 요일을 숫자로 반환함. (일요일 : 0 ~ 토요일 : 6)
@@ -29,20 +29,41 @@ export class Menu2Component implements OnInit {
     this.makeCalendarData('init');
   }
 
+  // 달력 기준일 설정
+  changeStandardDate(enterType: string) {
+    let standardDate;
+    switch(enterType) {
+      case 'init':
+        standardDate = new Date();
+           break;
+      case 'change':
+        standardDate = new Date(this.inputDate);
+           break;
+      case 'prev':
+        if (this.currentMonth === '1') {
+          standardDate = new Date((parseInt(this.currentYear) - 1).toString() + '-12-' + '01');
+        } else {
+          standardDate = new Date(this.currentYear + '-' + (parseInt(this.currentMonth) - 1).toString() + '-' + '01');
+        }
+      break;
+      case 'next':
+        if (this.currentMonth === '12') {
+          standardDate = new Date((parseInt(this.currentYear) + 1).toString() + '-01-' + '01');
+        } else {
+          standardDate = new Date(this.currentYear + '-' + (parseInt(this.currentMonth) + 1).toString() + '-' + '01');
+        }
+      break;
+      default:
+        standardDate = new Date();
+      break;
+  }
+    return standardDate;
+  }
+
   // 캘린더 생성
   makeCalendarData(enterType: string) {
-    let standardDate;
-    if (enterType === 'init') {
-      standardDate = new Date();
-    } else if (enterType === 'change') {
-      standardDate = new Date(this.inputDate);
-    } else if (enterType === 'prev') {
-      // tslint:disable-next-line: radix
-      standardDate = new Date(this.currentYear + '-' + (parseInt(this.currentMonth) - 1).toString() + '-' + '01');
-    } else {
-      // tslint:disable-next-line: radix
-      standardDate = new Date(this.currentYear + '-' + (parseInt(this.currentMonth) + 1).toString() + '-' + '01');
-    }
+    let standardDate = this.changeStandardDate(enterType);
+    
     const year = standardDate.getFullYear().toString();
     const month = (standardDate.getMonth() + 1).toString();
     // standardDate.getMonth() + 1 < 10 ? '0' + (standardDate.getMonth() + 1).toString() : (standardDate.getMonth() + 1).toString();
