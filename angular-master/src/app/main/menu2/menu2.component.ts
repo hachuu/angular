@@ -96,6 +96,9 @@ export class Menu2Component implements OnInit {
 
   // 날짜 수정
   changeDate() {
+    if ((/^\d{8}$/).test(this.inputDate)) {
+      this.inputDate = this.inputDate.substr(0, 4) + '-' + this.inputDate.substr(4, 2) + '-' + this.inputDate.substr(6, 2);
+    }
     this.makeCalendarData('change');
   }
 }
