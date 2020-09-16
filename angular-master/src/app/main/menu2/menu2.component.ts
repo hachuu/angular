@@ -11,29 +11,56 @@ export class Menu2Component implements OnInit {
   public totalCalLinesList = [];
   public currentMonth: string;
   public currentYear: string;
-  constructor() { }
+  public currentDate: string;
+  public inputDate: string;
+  constructor() {
+    // getDate()	날짜 중 일자를 숫자로 반환함. (1 ~ 31)
+    // getDay()	날짜 중 요일을 숫자로 반환함. (일요일 : 0 ~ 토요일 : 6)
+    // getFullYear()	날짜 중 연도를 4자리 숫자로 반환함. (yyyy년)
+    // getMonth()	날짜 중 월을 숫자로 반환함. (1월 : 0 ~ 12월 : 11)
+    // getTime()	1970년 1월 1일부터 현재까지의 시간을 밀리초(millisecond) 단위의 숫자로 반환함.
+    // getHours()	시간 중 시를 숫자로 반환함. (0 ~ 23)
+    // getMinutes()	시간 중 분을 숫자로 반환함. (0 ~ 59)
+    // getSeconds()	시간 중 초를 숫자로 반환함. (0 ~ 59)
+    // getMilliseconds()	시간 중 초를 밀리초(millisecond) 단위의 숫자로 반환함. (0 ~ 999)
+  }
 
   ngOnInit(): void {
+    this.makeCalendarData('init');
+  }
 
-    const today = new Date();
-    const year = today.getFullYear().toString();
-    const month = today.getMonth() + 1 < 10 ? '0' + (today.getMonth() + 1).toString() : (today.getMonth() + 1).toString();
-    const date = today.getDate().toString();
-    const day = today.getDay();
-    console.log('today : ', today);
+  // 캘린더 생성
+  makeCalendarData(enterType: string) {
+    let standardDate;
+    if (enterType === 'init') {
+      standardDate = new Date();
+    } else if (enterType === 'change') {
+      standardDate = new Date(this.inputDate);
+    } else if (enterType === 'prev') {
+      // tslint:disable-next-line: radix
+      standardDate = new Date(this.currentYear + '-' + (parseInt(this.currentMonth) - 1).toString() + '-' + '01');
+    } else {
+      // tslint:disable-next-line: radix
+      standardDate = new Date(this.currentYear + '-' + (parseInt(this.currentMonth) + 1).toString() + '-' + '01');
+    }
+    const year = standardDate.getFullYear().toString();
+    const month = (standardDate.getMonth() + 1).toString();
+    // standardDate.getMonth() + 1 < 10 ? '0' + (standardDate.getMonth() + 1).toString() : (standardDate.getMonth() + 1).toString();
+    const date = standardDate.getDate().toString();
+    const day = standardDate.getDay();
+    console.log('standardDate : ', standardDate);
     console.log('year : ', year);
     console.log('month : ', month);
     console.log('date : ', date);
     console.log('day : ', day);
 
+    this.currentDate = date;
     this.currentMonth = month;
     this.currentYear = year;
 
-    // const weekDays = [0, 1, 2, 3, 4, 5, 6];
-
     const strFirstDateMonth = year + '-' + month + '-01';
     console.log(strFirstDateMonth);
-    const lastDateMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+    const lastDateMonth = new Date(standardDate.getFullYear(), standardDate.getMonth() + 1, 0).getDate();
 
     console.log('lastDateMonth : ', lastDateMonth);
 
@@ -42,7 +69,7 @@ export class Menu2Component implements OnInit {
 
     const firstLineCnt = 7 - firstDateMonth.getDay();
     const firstDateMonthCnt = firstDateMonth.getDay();
-    const lastDateMonthCnt = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDay();
+    const lastDateMonthCnt = new Date(standardDate.getFullYear(), standardDate.getMonth() + 1, 0).getDay();
 
     const middleLine = (lastDateMonth - (lastDateMonthCnt + 1 + firstLineCnt)) / 7;
     console.log('중간 달력 라인 개수:', middleLine);
@@ -67,4 +94,8 @@ export class Menu2Component implements OnInit {
     console.log(this.totalCalLinesList);
   }
 
+  // 날짜 수정
+  changeDate() {
+    this.makeCalendarData('change');
+  }
 }
