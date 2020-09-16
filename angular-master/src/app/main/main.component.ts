@@ -24,7 +24,7 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.service.getHeroes();
+    this.service.getHoliday();
     console.log(this.router.url);
     console.log(airportlist.length);
   }

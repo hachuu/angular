@@ -103,4 +103,26 @@ export class RestService {
     //   .toPromise()
       
   }
+
+  getHoliday() {
+    let params = new HttpParams();
+    params = params.set('query', 'end');
+
+    return this.http.get('http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo',
+    {
+      // headers,
+      params: {
+        ServiceKey: 'znWF0YRgwv7pzqf%2Bo6ggglOcOQgogMD2pxqsDpXmH9bg4imY01PgCvKWnrgFlvLCbMX4VOj%2F%2Fgeu8wDqBHFbpw%3D%3D',
+        solYear: '2020',
+        solMonth: '10',
+        _type: 'json'
+      },
+      // observe: 'response'
+    })
+      .toPromise()
+      .then(response => {
+        console.log(response);
+      })
+      .catch(console.log);
+  }
 }
