@@ -32,6 +32,8 @@ export class Menu1Component implements OnInit, OnDestroy {
           return x;
         }
       });
+    } else {
+      this.filteredList = [];
     }
     console.log(this.filteredList.length);
   }
