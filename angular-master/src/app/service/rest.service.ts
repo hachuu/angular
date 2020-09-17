@@ -104,22 +104,37 @@ export class RestService {
       
   }
 
-  getHoliday() {
+  getHoliday(month: string, year: string) {
     let params = new HttpParams();
     params = params.set('query', 'end');
 
-    return this.http.get('http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo',
+    return this.http.get('http://localhost:8080/getRestDeInfo',
     {
       // headers,
       params: {
-        ServiceKey: 'znWF0YRgwv7pzqf%2Bo6ggglOcOQgogMD2pxqsDpXmH9bg4imY01PgCvKWnrgFlvLCbMX4VOj%2F%2Fgeu8wDqBHFbpw%3D%3D',
-        solYear: '2020',
-        solMonth: '10',
-        _type: 'json'
+        year,
+        month
       },
       // observe: 'response'
     })
       .toPromise()
+      .then(response => {
+        console.log(response);
+      })
+      .catch(console.log);
+  }
+
+  getLocalServer() {
+    let params = new HttpParams();
+    params = params.set('query', 'end');
+    return this.http.get('http://localhost:8080/demoapi',
+    {
+      headers,
+      params: {
+        
+      },
+    })
+    .toPromise()
       .then(response => {
         console.log(response);
       })

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestService } from 'app/service/rest.service';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -13,7 +14,9 @@ export class Menu2Component implements OnInit {
   public currentYear: string;     // 현재 년
   public currentDate: string;     // 현재 날짜
   public inputDate: string;       // 입력 날짜
-  constructor() {
+  constructor(
+    private service: RestService,
+  ) {
     // getDate()	날짜 중 일자를 숫자로 반환함. (1 ~ 31)
     // getDay()	날짜 중 요일을 숫자로 반환함. (일요일 : 0 ~ 토요일 : 6)
     // getFullYear()	날짜 중 연도를 4자리 숫자로 반환함. (yyyy년)
@@ -27,6 +30,7 @@ export class Menu2Component implements OnInit {
 
   ngOnInit(): void {
     this.makeCalendarData('init');
+    this.service.getHoliday(this.currentMonth, this.currentYear);
   }
 
   // 달력 기준일 설정
@@ -62,11 +66,10 @@ export class Menu2Component implements OnInit {
 
   // 캘린더 생성
   makeCalendarData(enterType: string) {
-    let standardDate = this.changeStandardDate(enterType);
-    
+    const standardDate = this.changeStandardDate(enterType);
     const year = standardDate.getFullYear().toString();
-    const month = (standardDate.getMonth() + 1).toString();
-    // standardDate.getMonth() + 1 < 10 ? '0' + (standardDate.getMonth() + 1).toString() : (standardDate.getMonth() + 1).toString();
+    // tslint:disable-next-line: max-line-length
+    const month = standardDate.getMonth() + 1 < 10 ? '0' + (standardDate.getMonth() + 1).toString() : (standardDate.getMonth() + 1).toString();
     const date = standardDate.getDate().toString();
     const day = standardDate.getDay();
     console.log('standardDate : ', standardDate);
