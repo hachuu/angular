@@ -30,7 +30,6 @@ export class Menu2Component implements OnInit {
 
   ngOnInit(): void {
     this.makeCalendarData('init');
-    this.service.getHoliday(this.currentMonth, this.currentYear);
   }
 
   // 달력 기준일 설정
@@ -116,6 +115,7 @@ export class Menu2Component implements OnInit {
       this.totalCalLinesList[lIndex] = row;
     }
     console.log(this.totalCalLinesList);
+    this.service.getHoliday(this.currentMonth, this.currentYear);
   }
 
   // 날짜 수정
