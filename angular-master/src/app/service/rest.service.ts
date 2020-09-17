@@ -108,7 +108,7 @@ export class RestService {
     let params = new HttpParams();
     params = params.set('query', 'end');
 
-    return this.http.get('http://localhost:8080/getRestDeInfo',
+    this.http.get('http://localhost:8080/getRestDeInfo',
     {
       // headers,
       params: {
@@ -119,7 +119,9 @@ export class RestService {
     })
       .toPromise()
       .then(response => {
-        console.log(response);
+
+        return response;
+        // console.log(response);
       })
       .catch(console.log);
   }
@@ -142,9 +144,10 @@ export class RestService {
   }
 
   getMovie(keyword: string, display: string) {
+    let res;
     let params = new HttpParams();
     params = params.set('query', 'end');
-    return this.http.get('http://localhost:8080/getMovie',
+    this.http.get('http://localhost:8080/getMovie',
     {
       params: {
         keyword,
@@ -154,7 +157,10 @@ export class RestService {
     .toPromise()
       .then(response => {
         console.log(response);
+        res = response;
       })
       .catch(console.log);
+    console.log(res);
+    return res;
   }
 }
