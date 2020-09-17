@@ -1,1 +1,13 @@
-<p>menu3 works!</p>
+<div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="search Date" aria-label="Recipient's username" aria-describedby="basic-addon2" [(ngModel)]="inputDate">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button" (click)="!!inputDate ? searchMovie() : ''">검색</button>
+    </div>
+</div>
+
+<div *ngIf="!!movieList && !!movieList.items">
+    <ng-container *ngFor="let movie of movieList.items">
+        {{movie.title}}
+        <img src={{movie.image}}>
+    </ng-container>
+</div>

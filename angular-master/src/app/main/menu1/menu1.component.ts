@@ -1,5 +1,5 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { RestService } from 'app/service/rest.service';
 import { airportlist } from '../../../data/dummy';
 @Component({
   selector: 'app-menu1',
@@ -17,7 +17,9 @@ export class Menu1Component implements OnInit, OnDestroy {
   @ViewChild("inputEl") inputEl: ElementRef;
   
 
-  constructor() { }
+  constructor(
+    private service: RestService,
+  ) { }
 
   ngOnInit(): void {
     console.log(airportlist.length);

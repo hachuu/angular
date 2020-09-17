@@ -2,7 +2,7 @@
   <div class="card-header">
     <ul class="nav nav-pills card-header-pills">
       <li class="nav-item" *ngFor="let menu of menuList; let i = index;">
-        <a [ngClass]="{'nav-link': true, 'active': currentURL === menu.router || i === menuIdx}" 
+        <a [ngClass]="{'nav-link': true, 'active': currentURL === menu.router}" 
           href="#" (click)="changeMenu(i)"
           [routerLink]="menu.router">{{menu.id}}</a>
       </li>

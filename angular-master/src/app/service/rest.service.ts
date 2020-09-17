@@ -140,4 +140,21 @@ export class RestService {
       })
       .catch(console.log);
   }
+
+  getMovie(keyword: string, display: string) {
+    let params = new HttpParams();
+    params = params.set('query', 'end');
+    return this.http.get('http://localhost:8080/getMovie',
+    {
+      params: {
+        keyword,
+        display
+      },
+    })
+    .toPromise()
+      .then(response => {
+        console.log(response);
+      })
+      .catch(console.log);
+  }
 }
