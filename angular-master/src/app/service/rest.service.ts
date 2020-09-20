@@ -143,11 +143,11 @@ export class RestService {
       .catch(console.log);
   }
 
-  getMovie(keyword: string, display: string) {
+  async getMovie(keyword: string, display: string) {
     let res;
     let params = new HttpParams();
     params = params.set('query', 'end');
-    this.http.get('http://localhost:8080/getMovie',
+    await this.http.get('http://localhost:8080/getMovie',
     {
       params: {
         keyword,

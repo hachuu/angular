@@ -7,7 +7,9 @@
 
 <div *ngIf="!!movieList && !!movieList.items">
     <ng-container *ngFor="let movie of movieList.items">
-        {{movie.title}}
-        <img src={{movie.image}}>
+        <div>
+            <span [innerHtml]="movie.title"></span>
+            <img src={{movie.image}}>
+        </div>
     </ng-container>
 </div>
