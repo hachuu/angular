@@ -14,6 +14,9 @@ export class Menu2Component implements OnInit {
   public currentYear: string;     // 현재 년
   public currentDate: string;     // 현재 날짜
   public inputDate: string;       // 입력 날짜
+
+  public holidays;
+
   constructor(
     private service: RestService,
   ) {
@@ -115,7 +118,7 @@ export class Menu2Component implements OnInit {
       this.totalCalLinesList[lIndex] = row;
     }
     console.log(this.totalCalLinesList);
-    this.service.getHoliday(this.currentMonth, this.currentYear);
+    this.getHoliday()
   }
 
   // 날짜 수정
@@ -124,5 +127,13 @@ export class Menu2Component implements OnInit {
       this.inputDate = this.inputDate.substr(0, 4) + '-' + this.inputDate.substr(4, 2) + '-' + this.inputDate.substr(6, 2);
     }
     this.makeCalendarData('change');
+  }
+
+  async getHoliday() {
+    await this.service.getHoliday(this.currentMonth, this.currentYear).then(x => {
+      this.holidays = x.response.body.items.item;
+      console.log(x);
+    });
+    console.log(this.holidays);
   }
 }

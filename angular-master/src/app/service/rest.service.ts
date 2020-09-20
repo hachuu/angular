@@ -104,11 +104,12 @@ export class RestService {
       
   }
 
-  getHoliday(month: string, year: string) {
+  async getHoliday(month: string, year: string) {
     let params = new HttpParams();
     params = params.set('query', 'end');
+    let res;
 
-    this.http.get('http://localhost:8080/getRestDeInfo',
+    await this.http.get('http://localhost:8080/getRestDeInfo',
     {
       // headers,
       params: {
@@ -117,13 +118,14 @@ export class RestService {
       },
       // observe: 'response'
     })
-      .toPromise()
-      .then(response => {
-
-        return response;
-        // console.log(response);
-      })
-      .catch(console.log);
+    .toPromise()
+    .then(response => {
+      res = response;
+      console.log(response);
+      
+    })
+    .catch(console.log);
+    return res;
   }
 
   getLocalServer() {
