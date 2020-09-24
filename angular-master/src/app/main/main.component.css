@@ -1,8 +1,10 @@
+/*     display: flex;
+    flex-direction: row;
+} */
 .cardList {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
-/* Row Gap */
-.cardList > *:not(:last-child) {
-    margin-bottom: 100px;
-}
+/* .cardList > *:not(:last-child) {
+    margin-bottom: 10px;
+} */

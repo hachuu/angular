@@ -1,1 +1,14 @@
-<p>header works!</p>
+<div>
+    <h1>연습장</h1>
+</div>
+<div class="container">
+    <div class="cardList" fxLayout="row" fxLayoutGap="32px">
+        <div *ngFor="let menu of menuList; let i = index;">
+            <div [ngClass]="{'active': currentURL === menu.router}" (click)="changeMenu(i)" [routerLink]="menu.router">
+                {{menu.id}}</div>
+        </div>
+        <div>
+            <div tabindex="-1" aria-disabled="true">Disabled</div>
+        </div>
+    </div>
+</div>

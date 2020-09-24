@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class MainComponent implements OnInit {
 
 
+  // tslint:disable-next-line: ban-types
   public list: Array<Object> = airportlist;
   public menuList = menuList;
   public menuIdx = 0;

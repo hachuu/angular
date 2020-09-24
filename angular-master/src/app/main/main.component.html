@@ -1,30 +1,6 @@
-<div>
-  <div>
-    <div fxLayout="row" fxLayoutGap="32px">
-      <div *ngFor="let menu of menuList; let i = index;">
-        <div [ngClass]="{'active': currentURL === menu.router}" 
-          (click)="changeMenu(i)"
-          [routerLink]="menu.router">{{menu.id}}</div>
-      </div>
-      <div>
-        <div tabindex="-1" aria-disabled="true">Disabled</div>
-      </div>
-    </div>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-<!-- <div>
-    <button class="btn btn-primary" [routerLink]="['/main/menu1']">메뉴1</button>
-    <button class="btn btn-primary" [routerLink]="['/main/menu2']">메뉴2</button>
-    <button class="btn btn-primary" [routerLink]="['/main/menu3']">메뉴3</button>
-</div> -->
 <div class="main-wrapper">
     <div fxFlex>
         <!-- Content here -->
-        <router-outlet></router-outlet>
+        이곳은 main
     </div>
 </div>
