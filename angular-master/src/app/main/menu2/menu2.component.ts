@@ -38,31 +38,35 @@ export class Menu2Component implements OnInit {
   // 달력 기준일 설정
   changeStandardDate(enterType: string) {
     let standardDate;
-    switch(enterType) {
+    switch (enterType) {
       case 'init':
         standardDate = new Date();
-           break;
+        break;
       case 'change':
         standardDate = new Date(this.inputDate);
-           break;
+        break;
       case 'prev':
-        if (this.currentMonth === '1') {
+        if (this.currentMonth === '01') {
+          // tslint:disable-next-line: radix
           standardDate = new Date((parseInt(this.currentYear) - 1).toString() + '-12-' + '01');
         } else {
+          // tslint:disable-next-line: radix
           standardDate = new Date(this.currentYear + '-' + (parseInt(this.currentMonth) - 1).toString() + '-' + '01');
         }
-      break;
+        break;
       case 'next':
         if (this.currentMonth === '12') {
+          // tslint:disable-next-line: radix
           standardDate = new Date((parseInt(this.currentYear) + 1).toString() + '-01-' + '01');
         } else {
+          // tslint:disable-next-line: radix
           standardDate = new Date(this.currentYear + '-' + (parseInt(this.currentMonth) + 1).toString() + '-' + '01');
         }
-      break;
+        break;
       default:
         standardDate = new Date();
-      break;
-  }
+        break;
+    }
     return standardDate;
   }
 
