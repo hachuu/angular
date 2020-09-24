@@ -7,6 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { RestService } from './service/rest.service';
 import { CommonModule } from '@angular/common';
 import { MainModule } from './main/main.module';
+import { FooterModule } from './footer/footer.module';
+import { HeaderModule } from './header/header.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { MainModule } from './main/main.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    MainModule
+    HeaderModule,
+    FooterModule,
+    MainModule,
+    FlexLayoutModule
   ],
   providers: [RestService],
   bootstrap: [AppComponent]

@@ -5,7 +5,7 @@ import { MainRoutes } from './main/main.router.module';
 
 const routes: Routes = [
   {path: '', redirectTo: '/main', pathMatch: 'full'},
-  ...MainRoutes
+  // ...MainRoutes
   //{ path: 'main', component: MainComponent, }, // url 경로가 /main 일때 MainComponent를 보여준다.
 ];
 

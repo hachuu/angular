@@ -1,8 +1,12 @@
-<!--추가된 부분 시작-->
-<div [routerLink]="['/main']">
-  <h1>연습장</h1>
-</div>
-<!--추가된 부분 종료-->
-<div class="app-wrapper">
-  <router-outlet></router-outlet>
+<div class="flex-container">
+  <!--추가된 부분 시작-->
+  <div [routerLink]="['/main']" fxLayout="colomn" fxLayoutAlign="space-between">
+    <h1>연습장</h1>
+  </div>
+  <!--추가된 부분 종료-->
+  <div class="app-wrapper">
+    <!-- <app-main></app-main> -->
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer></app-footer>
 </div>
