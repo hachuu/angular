@@ -1,0 +1,21 @@
+<nav class="navbar">
+  <div class="navbar__logo">
+    <i class="fas fa-house-user"></i>
+    <a href="/main">HachuCoding</a>
+  </div>
+  <ul [ngClass]="{'navbar__menu': true, 'active': showMenuList}">
+    <li><a href="">Home</a></li>
+    <li><a href="">Test</a></li>
+    <li><a href="">Test</a></li>
+    <li><a href="">Test</a></li>
+    <li><a href="">Test</a></li>
+  </ul>
+  <ul [ngClass]="{'navbar__icons': true, 'active': showMenuList}">
+    <li><i class="fab fa-github-square"></i></li>
+    <!-- <a href="https://github.com/hachuu"> -->
+    <li><i class="fas fa-envelope-open"></i></li>
+  </ul>
+  <a href="javascript:void(0)" class="nabvar__toggleBtn" (click)="clickToggleBtn()">
+    <i class="fas fa-bars"></i>
+  </a>
+</nav>
