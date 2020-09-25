@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -9,7 +10,11 @@ export class NavigationComponent implements OnInit {
   loadAPI: Promise<any>;
   showMenuList = false;
 
-  constructor() {
+  @Input() menuList;
+
+  constructor(
+    private router: Router
+  ) {
   }
   // <script src="https://kit.fontawesome.com/fb5c23ba72.js" crossorigin="anonymous"></script>
 

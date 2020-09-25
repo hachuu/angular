@@ -4,11 +4,16 @@
     <a href="/main">HachuCoding</a>
   </div>
   <ul [ngClass]="{'navbar__menu': true, 'active': showMenuList}">
-    <li><a href="">Home</a></li>
+    <li *ngFor="let menu of menuList; let i = index;">
+      <a [attr.href]="menu.router">
+        {{menu.id}}
+      </a>
+    </li>
+    <!-- <li><a href="">Home</a></li>
     <li><a href="">Test</a></li>
     <li><a href="">Test</a></li>
     <li><a href="">Test</a></li>
-    <li><a href="">Test</a></li>
+    <li><a href="">Test</a></li> -->
   </ul>
   <ul [ngClass]="{'navbar__icons': true, 'active': showMenuList}">
     <li><i class="fab fa-github-square"></i></li>
