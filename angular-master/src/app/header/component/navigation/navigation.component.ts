@@ -30,14 +30,19 @@ export class NavigationComponent implements OnInit {
     node.src = url;
     node.type = 'text/javascript';
     node.async = true;
-    node.crossOrigin='anonymous';
+    node.crossOrigin = 'anonymous';
     // tslint:disable-next-line: deprecation
     node.charset = 'utf-8';
     document.getElementsByTagName('head')[0].appendChild(node);
   }
 
+  // 네비게이션바 토글
   clickToggleBtn() {
     this.showMenuList = !this.showMenuList;
+  }
+
+  goGitHub() {
+    window.open('https://github.com/hachuu');
   }
 
 }

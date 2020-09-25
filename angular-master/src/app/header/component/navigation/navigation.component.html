@@ -16,8 +16,7 @@
     <li><a href="">Test</a></li> -->
   </ul>
   <ul [ngClass]="{'navbar__icons': true, 'active': showMenuList}">
-    <li><i class="fab fa-github-square"></i></li>
-    <!-- <a href="https://github.com/hachuu"> -->
+    <li><i class="fab fa-github-square" (click)="goGitHub()"></i></li>
     <li><i class="fas fa-envelope-open"></i></li>
   </ul>
   <a href="javascript:void(0)" class="nabvar__toggleBtn" (click)="clickToggleBtn()">
