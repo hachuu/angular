@@ -8,8 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class MovieLayerComponent implements OnInit {
 
   @Input() openFlag: boolean;
-  @Input() title: string;
-  @Input() image: string;
+  @Input() movieInfo;
   constructor() { }
 
   ngOnInit(): void {

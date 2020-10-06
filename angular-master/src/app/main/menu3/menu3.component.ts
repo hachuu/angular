@@ -10,8 +10,7 @@ export class Menu3Component implements OnInit {
   public inputDate: string;       // 검색어
   public movieList;
   public openFlag = false;
-  public title: string;
-  public image: string;
+  public movieInfo;
 
   constructor(
     private service: RestService,
@@ -28,9 +27,8 @@ export class Menu3Component implements OnInit {
   }
 
   // 영화 카드 레이어 오픈
-  openMovieLayer(title: string, image: string) {
-    this.title = title;
-    this.image = image;
+  openMovieLayer(movie) {
+    this.movieInfo = movie;
     this.openFlag = !this.openFlag;
   }
 
