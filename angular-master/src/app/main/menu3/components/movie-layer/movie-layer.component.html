@@ -1,8 +1,8 @@
 <div [ngClass]="{'modal': true, 'hide': !openFlag}">
   <div class="modal-inner">
-    <div [innerText]="replaceHtmlTag(title)"></div>
+    <div [innerText]="!!title ? replaceHtmlTag(title) : ''"></div>
     <img src={{image}}>
-    <i class="fas fa-times-circle" (click)="openFlag = false"></i>
+    <i class="fas fa-times-circle close" (click)="openFlag = false"></i>
   </div>
   <!-- <div class="" (click)="openFlag = false">닫기</div> -->
 </div>
