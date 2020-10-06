@@ -15,4 +15,8 @@ export class MovieLayerComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  replaceHtmlTag(text: string) {
+    return text.replace(/(<([^>]+)>)/ig, '');
+  }
+
 }
