@@ -1,7 +1,8 @@
-<div class="flex align-center align-vert modal modal--align">
-  <div class="modal__container">
-    <a class="modal__close modal__close--x" aria-hidden="true">&#x2715;</a>
-    <p>Although we have an 'X' to close we should always have a button/link to cancel the modal</p>
-    <button class="modal__close">Cancel link</button>
+<div [ngClass]="{'modal': true, 'hide': !openFlag}">
+  <div class="modal-inner">
+    <div [innerHTML]="title"></div>
+    <img src={{image}}>
+    <i class="fas fa-times-circle" (click)="openFlag = false"></i>
   </div>
+  <!-- <div class="" (click)="openFlag = false">닫기</div> -->
 </div>

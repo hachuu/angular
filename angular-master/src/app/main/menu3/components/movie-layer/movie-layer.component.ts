@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-movie-layer',
@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovieLayerComponent implements OnInit {
 
+  @Input() openFlag: boolean;
+  @Input() title: string;
+  @Input() image: string;
   constructor() { }
 
   ngOnInit(): void {

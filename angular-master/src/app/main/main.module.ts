@@ -6,9 +6,10 @@ import { Menu3Component } from './menu3/menu3.component';
 import { RestService } from '../service/rest.service';
 import { MainComponent } from './main.component';
 import { FormsModule } from '@angular/forms';
+import { MovieLayerComponent } from './menu3/components/movie-layer/movie-layer.component';
 
 @NgModule({
-  declarations: [MainComponent, Menu1Component, Menu2Component, Menu3Component],
+  declarations: [MainComponent, Menu1Component, Menu2Component, Menu3Component, MovieLayerComponent],
   imports: [
     CommonModule,
     FormsModule
