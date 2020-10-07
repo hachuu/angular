@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header.component';
 import { HeaderRouterModule } from './header.router.module';
-import { NavigationModule } from './component/navigation/navigation.module';
+import { NavigationModule } from './components/navigation/navigation.module';
 
 
 

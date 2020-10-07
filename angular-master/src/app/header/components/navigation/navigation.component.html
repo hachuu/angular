@@ -17,9 +17,13 @@
   </ul>
   <ul [ngClass]="{'navbar__icons': true, 'active': showMenuList}">
     <li><i class="fab fa-github-square" (click)="goGitHub()"></i></li>
-    <li><i class="fas fa-envelope-open"></i></li>
+    <li><i class="fas fa-envelope-open" (click)="showEmailInfo()"></i></li>
   </ul>
   <a href="javascript:void(0)" class="nabvar__toggleBtn" (click)="clickToggleBtn()">
     <i class="fas fa-bars"></i>
   </a>
 </nav>
+
+<app-email-layer
+  [openFlag]="openFlag"
+></app-email-layer>
