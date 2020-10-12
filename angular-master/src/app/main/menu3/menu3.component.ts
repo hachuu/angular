@@ -9,6 +9,8 @@ export class Menu3Component implements OnInit {
 
   public inputDate: string;       // 검색어
   public movieList;
+  public openFlag = false;
+  public movieInfo;
 
   constructor(
     private service: RestService,
@@ -19,9 +21,16 @@ export class Menu3Component implements OnInit {
   }
 
   async searchMovie() {
-    this.service.getMovie(this.inputDate, '100').then(x => this.movieList = x);
-    console.log(this.service.getMovie(this.inputDate, '100'));
+    this.movieList = await this.service.getMovie(this.inputDate, '100');
+    // .then(x => this.movieList = x);
+    // console.log(this.service.getMovie(this.inputDate, '100'));
     console.log(this.movieList);
+  }
+
+  // 영화 카드 레이어 오픈
+  openMovieLayer(movie) {
+    this.movieInfo = movie;
+    this.openFlag = !this.openFlag;
   }
 
 }

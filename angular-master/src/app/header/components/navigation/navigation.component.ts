@@ -10,6 +10,8 @@ export class NavigationComponent implements OnInit {
   loadAPI: Promise<any>;
   showMenuList = false;
 
+  public openFlag = false;
+
   @Input() menuList;
 
   constructor(
@@ -43,6 +45,10 @@ export class NavigationComponent implements OnInit {
 
   goGitHub() {
     window.open('https://github.com/hachuu');
+  }
+
+  showEmailInfo() {
+    this.openFlag = !this.openFlag;
   }
 
 }
