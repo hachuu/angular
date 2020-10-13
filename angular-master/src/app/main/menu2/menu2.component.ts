@@ -138,9 +138,9 @@ export class Menu2Component implements OnInit {
       this.holidays = x.response.body.items.item;
       console.log(x);
     });
-    console.log(this.holidays);
-    this.holidays = this.holidays.map(({locdate}) => locdate.toString());
-    console.log(this.holidays);
+    if (!!this.holidays) {
+      this.holidays.length > 1 ? this.holidays = this.holidays.map(({locdate}) => locdate.toString()) : this.holidays = [this.holidays.locdate.toString()];
+    }
   }
 
   getHolidayExpression(days: string) {
