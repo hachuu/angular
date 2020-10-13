@@ -10,5 +10,9 @@ export const menuList = [
     {
         id: '영화검색',
         router: '/main/menu3'
+    },
+    {
+        id: '도서검색',
+        router: '/main/menu4'
     }
 ];

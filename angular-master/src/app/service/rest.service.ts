@@ -51,7 +51,12 @@ const headers = new HttpHeaders()
     providedIn: 'root'
 })
 export class RestService {
-  constructor(private http: HttpClient) { }
+
+  private GOOGLE_API = 'https://www.googleapis.com/books/v1/volumes';
+
+  constructor(
+    private http: HttpClient
+  ) { }
 
   private extractData(res: Response) {
       const body = res;
@@ -165,4 +170,10 @@ export class RestService {
     console.log(res);
     return res;
   }
+
+  // CORS 테스트
+  getBookList(data: string): Observable<any> {
+     return this.http.get(`${this.GOOGLE_API}?orderBy=newest&q=${data}`) .pipe(map((books: any) => books.items || []));
+  }
+
 }

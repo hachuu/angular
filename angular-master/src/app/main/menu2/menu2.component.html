@@ -30,7 +30,7 @@
                 <span class="active">{{days}}</span>
             </ng-container>
             <ng-template #regularDate>
-                {{days}}
+                <span [ngClass]="getHolidayExpression(days)">{{days}}</span>
             </ng-template>
         </li>
         </ng-container>

@@ -71,3 +71,9 @@ body {font-family: Verdana, sans-serif;}
   background: #1abc9c;
   color: white !important
 }
+
+.days li .holiday {
+  padding: 5px;
+  font-weight: bold;
+  color: #1abc9c !important
+}

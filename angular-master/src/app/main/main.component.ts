@@ -3,6 +3,7 @@ import { RestService } from '../service/rest.service';
 import { airportlist } from 'data/dummy';
 import { menuList } from 'app/card/menu';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -18,7 +19,7 @@ export class MainComponent implements OnInit {
   public currentURL: string;
 
   public returnValue;
-
+  
   constructor(
     private service: RestService,
     private router: Router
@@ -38,6 +39,7 @@ export class MainComponent implements OnInit {
     this.menuIdx = i;
     this.currentURL = this.menuList[i].router;
   }
+
 
   // sortLists(resultLists) {
   //   this.newAreaLists = {};

@@ -1,0 +1,13 @@
+google Api 호출 (도서 검색 test)
+<div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="search book" aria-label="" aria-describedby="basic-addon2" [(ngModel)]="inputData">
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" (click)="!!inputData ? getBook(inputData) : ''">검색</button>
+    </div>
+</div>
+  <div *ngIf="!!bookTest$">
+    <div *ngFor="let item of bookTest$ | async">
+        <span>{{item.id}}</span>
+        <span>{{item.volumeInfo.title}}</span>
+    </div>
+  </div>

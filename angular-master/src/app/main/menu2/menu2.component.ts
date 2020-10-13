@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestService } from 'app/service/rest.service';
-import { map } from 'rxjs/operators';
+import { every, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-menu2',
@@ -139,5 +139,21 @@ export class Menu2Component implements OnInit {
       console.log(x);
     });
     console.log(this.holidays);
+    this.holidays = this.holidays.map(({locdate}) => locdate.toString());
+    console.log(this.holidays);
+  }
+
+  getHolidayExpression(days: string) {
+    if (!!this.holidays) {
+      // const compareDate = (currentValue) => Number(currentValue.substr(6, 2)) === Number(days);
+      // console.log(compareDate);
+      if(this.holidays.some((value) => {
+        if (Number(value.substring(6, 8)) === Number(days)) {
+          return true;
+        }
+      })) {
+        return 'holiday';
+      }
+    }
   }
 }
