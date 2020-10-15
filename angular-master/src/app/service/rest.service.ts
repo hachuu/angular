@@ -54,6 +54,8 @@ export class RestService {
 
   private GOOGLE_API = 'https://www.googleapis.com/books/v1/volumes';
 
+  private NAVER_API = 'https://openapi.naver.com/v1/search/movie.json';
+
   constructor(
     private http: HttpClient
   ) { }
@@ -170,10 +172,30 @@ export class RestService {
     console.log(res);
     return res;
   }
+  //getMovieList
+  // async getMovie(keyword: string, display: string) {
+  //   return await this.http.get(`${this.NAVER_API}?query=${keyword}&display=${display}`) .pipe(map((movies: any) => movies.items || []));
+  // }
+
+  // angular에서 직접 serverless로 호출하려 하는데 잘 안되넹 ㅠㅠ..
+  // getMovie = async (keyword: string, display: string) => {
+  //   const ID_KEY = 'id_key';
+  //   const SECRET_KEY = 'secret_key';
+  //   try {
+  //     return await this.http.get('https://openapi.naver.com/v1/search/movie.json', { params: { query: keyword, display }, headers})
+  //     .pipe(map((movies: any) => {
+  //       console.log(movies);
+  //       movies = movies.items || [];
+  //     }));
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+
 
   // CORS 테스트
   getBookList(data: string): Observable<any> {
-     return this.http.get(`${this.GOOGLE_API}?orderBy=newest&q=${data}`) .pipe(map((books: any) => books.items || []));
+    return this.http.get(`${this.GOOGLE_API}?orderBy=newest&q=${data}`) .pipe(map((books: any) => books.items || []));
   }
 
 }

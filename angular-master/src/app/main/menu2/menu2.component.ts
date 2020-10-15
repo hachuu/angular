@@ -122,7 +122,7 @@ export class Menu2Component implements OnInit {
       this.totalCalLinesList[lIndex] = row;
     }
     console.log(this.totalCalLinesList);
-    this.getHoliday()
+    this.getHoliday();
   }
 
   // 날짜 수정
@@ -139,7 +139,11 @@ export class Menu2Component implements OnInit {
       console.log(x);
     });
     if (!!this.holidays) {
-      this.holidays.length > 1 ? this.holidays = this.holidays.map(({locdate}) => locdate.toString()) : this.holidays = [this.holidays.locdate.toString()];
+      if (this.holidays.length > 1) {
+        this.holidays = this.holidays.map(({locdate}) => locdate.toString());
+      } else {
+        this.holidays = [this.holidays.locdate.toString()];
+      }
     }
   }
 
