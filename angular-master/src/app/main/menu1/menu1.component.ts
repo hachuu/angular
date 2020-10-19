@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { RestService } from 'app/service/rest.service';
 import { airportlist } from '../../../data/airportDummy';
-import { airportFilter, createEmptySearchText, SearchText } from './airport-filter';
+import { airportFilter, convertSearchText, createEmptySearchText, SearchText } from './airport-filter';
 
 @Component({
   selector: 'app-menu1',
@@ -44,6 +44,7 @@ export class Menu1Component implements OnInit, OnDestroy {
       //     return x;
       //   }
       // });
+      this.searchText = convertSearchText(inputValue);
       const options = {keyword: inputValue, ...this.searchText};
       this.filteredList = airportFilter(this.list, options);
     } else {

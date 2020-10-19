@@ -11,7 +11,10 @@
     </button>
     <div [ngClass]="{'dropdown-menu dropdown-menu-left': true, 'show': expanded}">
         <ng-container *ngIf="!!filteredList && filteredList.length > 0 else emptyList">
-            <button class="dropdown-item" type="button" *ngFor="let airport of filteredList">{{airport.airportCode}}</button>
+            <button class="dropdown-item" type="button" *ngFor="let airport of filteredList">
+                {{airport.airportCode.toUpperCase()}}
+                {{airport.airportName}}
+            </button>
         </ng-container>
         <ng-template #emptyList>
             검색 결과가 없습니다.
