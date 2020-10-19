@@ -1,7 +1,7 @@
 import { getShortAirportName } from 'app/utils/utils';
 import { changeUpperToLower, kor2Eng, eng2Kor } from './utils/lang-convert';
 /**
- * 검색 조건을 상황
+ * 검색 조건 상황
  */
 export interface SearchText {
   text: string;
@@ -26,17 +26,17 @@ export  function createEmptySearchText(): SearchText {
  * @param text 공항 검색 text
  */
 export const convertSearchText = (text: string): SearchText => {
-  const upperToLower = changeUpperToLower(text);
-  const translateAirportKOR = eng2Kor(upperToLower); // CAPSLOCK 켜져있는 경우 한글로 변환
-  const translateAirportDoubleKOR = eng2Kor(text); // 쌍자음, 모음조합 고려한 한글로 변환
-  const translateAirportENG = kor2Eng(text).toUpperCase(); // 한글을 영어로 변환
-
+  // upperToLower: upperCase로 변환
+  // translateAirportENG: 한글을 영어로 변환
+  // translateAirportKOR: CAPSLOCK 켜져있는 경우 한글로 변환
+  // translateAirportDoubleKOR: 쌍자음, 모음조합 고려한 한글로 변환
+  const korean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
   return {
     text,
-    upperToLower,
-    translateAirportKOR,
-    translateAirportDoubleKOR,
-    translateAirportENG,
+    upperToLower: korean.test(text) ? text: changeUpperToLower(text),
+    translateAirportKOR : korean.test(text) ? text: eng2Kor(changeUpperToLower(text)),
+    translateAirportDoubleKOR : korean.test(text) ? text: eng2Kor(text),
+    translateAirportENG: korean.test(text) ? kor2Eng(text).toUpperCase(): text
   };
 };
 
@@ -74,36 +74,25 @@ export const airportFilter = (items?: any[], options?: AirportOption): any [] =>
         ((item.linemanageRegYn === 'Y' && item.linemanageUSeYn === 'Y' && item.reYn === 'Y'))
         && (item.airportCode.startsWith(keyword)
           || (!!item.cityCode && item.cityCode.toUpperCase().startsWith(keyword.toUpperCase()))
-          // tslint:disable-next-line: max-line-length
           || (kor2Eng(getShortAirportName(item.airportName, item.airportCode, 'B', item.areaCode)).toUpperCase().startsWith(keyword.toUpperCase()))
-          // tslint:disable-next-line: max-line-length
           || (!!item.airportName.split('/')[1] && (kor2Eng(item.airportName.split('/')[1]).toUpperCase().startsWith(keyword.toUpperCase()) && item.airportType !== 'CTY'))
 
           || (getShortAirportName(item.airportName, item.airportCode, 'B', item.areaCode).startsWith(translateAirportKOR))
           || (!!item.airportName.split('/')[1] && (item.airportName.split('/')[1].startsWith(translateAirportKOR) && item.airportType !== 'CTY'))
 
-          // || (item.airportName.toUpperCase().indexOf(translateAirportDoubleKOR.toUpperCase()) > -1)
           || (getShortAirportName(item.airportName, item.airportCode, 'B', item.areaCode).startsWith(translateAirportDoubleKOR))
-          // tslint:disable-next-line: max-line-length
           || (!!item.airportName.split('/')[1] && (item.airportName.split('/')[1].startsWith(translateAirportDoubleKOR) && item.airportType !== 'CTY'))
 
-          || item.airportCode.toUpperCase().startsWith(translateAirportENG)
+          || item.airportCode.toUpperCase().startsWith(translateAirportENG.toUpperCase())
           || (!!item.cityCode && item.cityCode.toUpperCase().startsWith(translateAirportENG.toUpperCase()))
-          // tslint:disable-next-line: max-line-length
           || (kor2Eng(getShortAirportName(item.airportName, item.airportCode, 'B', item.areaCode)).toUpperCase().startsWith(translateAirportENG.toUpperCase()))
-          // tslint:disable-next-line: max-line-length
           || (!!item.airportName.split('/')[1] && (kor2Eng(item.airportName.split('/')[1]).toUpperCase().startsWith(translateAirportENG.toUpperCase()) && item.airportType !== 'CTY'))
 
-          // tslint:disable-next-line: max-line-length
           || (getShortAirportName(item.airportEngName, item.airportCode, 'B', item.areaCode).toUpperCase().startsWith(keyword.toUpperCase()))
-          // tslint:disable-next-line: max-line-length
           || (getShortAirportName(item.airportEngName, item.airportCode, 'B', item.areaCode).toUpperCase().startsWith(translateAirportENG.toUpperCase()))
-          // tslint:disable-next-line: max-line-length
           || (!!item.airportEngName.split('/')[1] && (item.airportEngName.split('/')[1].toUpperCase().startsWith(keyword.toUpperCase()) && item.airportType !== 'CTY'))
-          // tslint:disable-next-line: max-line-length
           || (!!item.airportEngName.split('/')[1] && (item.airportEngName.split('/')[1].toUpperCase().startsWith(translateAirportENG.toUpperCase()) && item.airportType !== 'CTY'))
 
-          // tslint:disable-next-line: max-line-length
           || (keyword.toUpperCase().substring(3, 4) === ' ' && item.airportCode.toUpperCase().startsWith(keyword.toUpperCase().substring(0, 3)) && item.airportName.toUpperCase().startsWith(keyword.toUpperCase().substring(4, keyword.length)))
         )
       ));

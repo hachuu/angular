@@ -1,25 +1,20 @@
+// 키보드 자판
+// englishKey: 키보드 배열 ㄱ~ㅣ까지 영어자판 표기
+// koreanKey: 키보드 배열 ㄱ~ㅣ까지 한글자판 표기
 const englishKey = 'rRseEfaqQtTdwWczxvgkoiOjpuPhynbml';
 const koreanKey = 'ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎㅏㅐㅑㅒㅓㅔㅕㅖㅗㅛㅜㅠㅡㅣ';
+
+// initialData: 초성, neutralData: 중성, lastData: 종성
 const initialData = 'ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ';
 const neutralData = 'ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ';
 const lastData = 'ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ';
-const lowerCase = 'abcdefghijklmnopqrstuvwxyz';
-
 
 // CAPSLOCK 켜져있는 경우 reverse처리
 export const changeUpperToLower = (inputStringVal: string) => {
-  let newEnglishText = '';
-  for (let i = 0; i < inputStringVal.length; i++) {
-    const ch = inputStringVal.charAt(i);
-    if (lowerCase.indexOf(ch) !== -1) {
-      newEnglishText += ch.toUpperCase();
-    } else {
-      newEnglishText += ch.toLowerCase();
-    }
-  }
-  return newEnglishText;
+  return inputStringVal.toLowerCase();
 };
 
+// 영어를 한글로 변환
 export const eng2Kor = (src: string) => {
   let res = '';
   if (src.length === 0) {
@@ -345,6 +340,7 @@ export const kor2Eng = (src) => {
   return res;
 };
 
+// 유니코드 한글변환
 const makeKorean = (initial, neutral, last) => {
   return String.fromCharCode(0xac00 + initial * 21 * 28 + neutral * 28 + last + 1);
 };

@@ -45,6 +45,7 @@ export class Menu1Component implements OnInit, OnDestroy {
       //   }
       // });
       this.searchText = convertSearchText(inputValue);
+      console.log(this.searchText);
       const options = {keyword: inputValue, ...this.searchText};
       this.filteredList = airportFilter(this.list, options);
     } else {
