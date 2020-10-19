@@ -2,29 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-import {HttpParams} from "@angular/common/http";
+import {HttpParams} from '@angular/common/http';
 // const request = require('request');
 
 
 const NAVER_CLIENT_ID     = 'rkGs4ri_LDBJWxH4thyy';
 const NAVER_CLIENT_SECRET = 'VuINpm3hPd';
-const endpoint = 'Rest API Adress';
-const httpOptions = new Headers(
-    { 'Content-Type': 'application/json',
-      'X-Naver-Client-Id': NAVER_CLIENT_ID,
-      'X-Naver-Client-Secret': NAVER_CLIENT_SECRET
-    }
-);
-const apiUrl = 'https://openapi.naver.com/v1/search/movie.json';
+// rest api 호출 시 필요한 데이터 예시 START
+/*
 
-
-const option = {
-  query  : '꽃', // 이미지 검색 텍스트
-  start  : 1, // 검색 시작 위치
-  display: 3, // 가져올 이미지 갯수
-  sort   : 'sim', // 정렬 유형 (sim:유사도)
-  filter : 'small' // 이미지 사이즈
-};
 const reqObj = {
   uri: apiUrl,
   qs: option,
@@ -33,19 +19,42 @@ const reqObj = {
     'X-Naver-Client-Secret': NAVER_CLIENT_SECRET
   }
 };
-
+const httpOptions = new Headers(
+  { 'Content-Type': 'application/json',
+    'X-Naver-Client-Id': NAVER_CLIENT_ID,
+    'X-Naver-Client-Secret': NAVER_CLIENT_SECRET
+  }
+);
 const headers = new HttpHeaders()
   .set('content-encoding', 'gzip')
   .set('Authorization', 'SSWS')
   .set('Content-Type', 'application/json; charset=UTF-8')
-  .set('Access-Control-Allow-Credentials', "true")
+  .set('Access-Control-Allow-Credentials', 'true')
   .set('Access-Control-Allow-Origin', '*')
   .set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
   .set('Access-Control-Max-Age', '3600')
   .set('Access-Control-Allow-Headers', '*')
-  // .set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization')
   .set('X-Naver-Client-Id', NAVER_CLIENT_ID)
   .set('X-Naver-Client-Secret', NAVER_CLIENT_SECRET);
+
+getLocalServer() {
+  let params = new HttpParams();
+  params = params.set('query', 'end');
+  return this.http.get('http://localhost:8080/demoapi',
+  {
+    // headers,
+    params: {
+    },
+  })
+  .toPromise()
+    .then(response => {
+      console.log(response);
+    })
+    .catch(console.log);
+}
+*/
+
+// rest api 호출 시 필요한 데이터 예시 END
 
 @Injectable({
     providedIn: 'root'
@@ -65,51 +74,28 @@ export class RestService {
       return body || { };
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error); // log to console instead
-      return of(result as T);
-    };
-  }
+  // private handleError<T>(operation = 'operation', result?: T) {
+  //   return (error: any): Observable<T> => {
+  //     console.error(error); // log to console instead
+  //     return of(result as T);
+  //   };
+  // }
 
-  getProducts(): Observable<any> {
-    return this.http.get<any>(apiUrl)
-      .pipe(
-        tap(product => console.log('fetched products')),
-        catchError(this.handleError('getProducts', []))
-      );
-  }
+  // getProducts(): Observable<any> {
+  //   return this.http.get<any>(apiUrl)
+  //     .pipe(
+  //       tap(product => console.log('fetched products')),
+  //       catchError(this.handleError('getProducts', []))
+  //     );
+  // }
 
-  getProduct(id: any): Observable<any> {
-    const url = `${apiUrl}/${id}`;
-    return this.http.get<any>(url).pipe(
-      tap(_ => console.log(`fetched product id=${id}`)),
-      catchError(this.handleError<any>(`getProduct id=${id}`))
-    );
-  }
-  
-  getHeroes(): Promise<any> {
-
-    let params = new HttpParams();
-    params = params.set('query', 'end');
-
-    return this.http.get(`${apiUrl}`,
-    {
-      headers,
-      params: {
-        query: 'end'
-      },
-      observe: 'response'
-    })
-      .toPromise()
-      .then(response => {
-        console.log(response);
-      })
-      .catch(console.log);
-    // return this.http.get(reqObj)
-    //   .toPromise()
-      
-  }
+  // getProduct(id: any): Observable<any> {
+  //   const url = `${apiUrl}/${id}`;
+  //   return this.http.get<any>(url).pipe(
+  //     tap(_ => console.log(`fetched product id=${id}`)),
+  //     catchError(this.handleError<any>(`getProduct id=${id}`))
+  //   );
+  // }
 
   async getHoliday(month: string, year: string) {
     let params = new HttpParams();
@@ -118,38 +104,18 @@ export class RestService {
 
     await this.http.get('http://localhost:8080/getRestDeInfo',
     {
-      // headers,
       params: {
         year,
         month
       },
-      // observe: 'response'
     })
     .toPromise()
     .then(response => {
       res = response;
       console.log(response);
-      
     })
     .catch(console.log);
     return res;
-  }
-
-  getLocalServer() {
-    let params = new HttpParams();
-    params = params.set('query', 'end');
-    return this.http.get('http://localhost:8080/demoapi',
-    {
-      headers,
-      params: {
-        
-      },
-    })
-    .toPromise()
-      .then(response => {
-        console.log(response);
-      })
-      .catch(console.log);
   }
 
   async getMovie(keyword: string, display: string) {
@@ -172,7 +138,7 @@ export class RestService {
     console.log(res);
     return res;
   }
-  //getMovieList
+  // getMovieList
   // async getMovie(keyword: string, display: string) {
   //   return await this.http.get(`${this.NAVER_API}?query=${keyword}&display=${display}`) .pipe(map((movies: any) => movies.items || []));
   // }

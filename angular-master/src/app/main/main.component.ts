@@ -18,8 +18,6 @@ export class MainComponent implements OnInit {
   public menuIdx = 0;
   public currentURL: string;
 
-  public returnValue;
-  
   constructor(
     private service: RestService,
     private router: Router
@@ -28,8 +26,6 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.returnValue = this.service.getLocalServer();
-    // this.service.getHoliday();
     console.log(this.router.url);
     console.log(airportlist.length);
   }

@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { RestService } from 'app/service/rest.service';
-import { airportlist } from '../../../data/dummy';
+import { airportlist } from '../../../data/airportDummy';
+import { airportFilter, createEmptySearchText, SearchText } from './airport-filter';
+
 @Component({
   selector: 'app-menu1',
   templateUrl: './menu1.component.html',
@@ -8,32 +10,42 @@ import { airportlist } from '../../../data/dummy';
 })
 export class Menu1Component implements OnInit, OnDestroy {
 
-  public list: Array<Object> = airportlist;
+  public list: Array<any> = airportlist.locationInfoList;
   public test;
   public filteredList;
   public expanded = false;
 
-  // @ViewChild inputEl 
-  @ViewChild("inputEl") inputEl: ElementRef;
-  
+  searchText: SearchText = createEmptySearchText();
+
+  // @ViewChild inputEl
+  @ViewChild('inputEl') inputEl: ElementRef;
 
   constructor(
     private service: RestService,
   ) { }
 
   ngOnInit(): void {
-    console.log(airportlist.length);
+    console.log(this.list.length);
     console.log(this.inputEl);
   }
 
-  keyUp(event:KeyboardEvent) {
+/**
+ * 공항 검색
+ * @param items 공항 리스트
+ * @param options 검색 텍스트와 옵션
+ */
+  keyUp(event: KeyboardEvent) {
     const inputValue = this.inputEl.nativeElement.value;
     if (!!inputValue) {
-      this.filteredList = airportlist.filter(x=> {
-        if (x.code.indexOf(this.test) > 0 || (/^[a-zA-Z]*$/.test(inputValue) && x.code.toLowerCase().indexOf(this.test.toLowerCase()) === 0)) {
-          return x;
-        }
-      });
+      // 10/19 분기 처리
+      // this.filteredList = this.list.filter(x => {
+      // tslint:disable-next-line: max-line-length
+      //   if (x.code.indexOf(this.test) > 0 || (/^[a-zA-Z]*$/.test(inputValue) && x.code.toLowerCase().indexOf(this.test.toLowerCase()) === 0)) {
+      //     return x;
+      //   }
+      // });
+      const options = {keyword: inputValue, ...this.searchText};
+      this.filteredList = airportFilter(this.list, options);
     } else {
       this.filteredList = [];
     }
