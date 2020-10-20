@@ -11,6 +11,7 @@ export class Menu3Component implements OnInit {
   public movieList;
   public openFlag = false;
   public movieInfo;
+  public loading;
 
   constructor(
     private service: RestService,
@@ -21,10 +22,12 @@ export class Menu3Component implements OnInit {
   }
 
   async searchMovie() {
+    this.loading = true;
     this.movieList = await this.service.getMovie(this.inputDate, '100');
     // .then(x => this.movieList = x);
     // console.log(this.service.getMovie(this.inputDate, '100'));
     console.log(this.movieList);
+    this.loading = false;
   }
 
   // 영화 카드 레이어 오픈
