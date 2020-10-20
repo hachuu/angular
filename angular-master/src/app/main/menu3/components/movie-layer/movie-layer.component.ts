@@ -18,4 +18,9 @@ export class MovieLayerComponent implements OnInit {
     return text.replace(/(<([^>]+)>)/ig, '');
   }
 
+  // 네이버 영화 검색
+  goMovieInfo(link: string) {
+    window.open(link);
+  }
+
 }

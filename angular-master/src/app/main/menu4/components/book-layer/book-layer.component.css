@@ -22,5 +22,5 @@
 .right {
   position: fixed;
   float: right;
-  display: inline-block;
+  display: block;
 }
