@@ -5,9 +5,16 @@ google Api 호출 (도서 검색 test)
         <button class="btn btn-outline-secondary" type="button" (click)="!!inputData ? getBook(inputData) : ''">검색</button>
     </div>
 </div>
-  <div *ngIf="!!bookTest$">
-    <div *ngFor="let item of bookTest$ | async">
-        <span>{{item.id}}</span>
-        <span>{{item.volumeInfo.title}}</span>
+<div class="result">검색 결과</div>
+<div *ngIf="!!bookTest$">
+  <div *ngFor="let item of bookTest$ | async">
+    <div (click)="openBookLayer(item)">
+      <span>{{item.volumeInfo.title}}</span>
     </div>
   </div>
+</div>
+
+<app-book-layer *ngIf="!!bookInfo"
+    [openFlag]="openFlag"
+    [bookInfo]="bookInfo"
+></app-book-layer>

@@ -8,8 +8,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./menu4.component.css']
 })
 export class Menu4Component implements OnInit {
-  public bookTest$: Observable<string[]>;
+  public bookTest$: Observable<any[]>;
   public inputData: string;
+
+  public openFlag = false;
+  public bookInfo;
 
   constructor(
     private service: RestService,
@@ -18,8 +21,12 @@ export class Menu4Component implements OnInit {
   ngOnInit(): void {
   }
 
-  
   getBook(data: string) {
     this.bookTest$ = this.service.getBookList(data);
+  }
+
+  openBookLayer(book) {
+    this.bookInfo = book;
+    this.openFlag = !this.openFlag;
   }
 }

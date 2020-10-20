@@ -33,10 +33,10 @@ export const convertSearchText = (text: string): SearchText => {
   const korean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
   return {
     text,
-    upperToLower: korean.test(text) ? text: changeUpperToLower(text),
-    translateAirportKOR : korean.test(text) ? text: eng2Kor(changeUpperToLower(text)),
-    translateAirportDoubleKOR : korean.test(text) ? text: eng2Kor(text),
-    translateAirportENG: korean.test(text) ? kor2Eng(text).toUpperCase(): text
+    upperToLower: korean.test(text) ? text : changeUpperToLower(text),
+    translateAirportKOR : korean.test(text) ? text : eng2Kor(changeUpperToLower(text)),
+    translateAirportDoubleKOR : korean.test(text) ? text : eng2Kor(text),
+    translateAirportENG: korean.test(text) ? kor2Eng(text).toUpperCase() : text
   };
 };
 

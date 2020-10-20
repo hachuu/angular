@@ -9,9 +9,22 @@ const initialData = 'ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ';
 const neutralData = 'ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ';
 const lastData = 'ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ';
 
+// 알파벳 소문자
+const lowerCase = 'abcdefghijklmnopqrstuvwxyz';
+
 // CAPSLOCK 켜져있는 경우 reverse처리
 export const changeUpperToLower = (inputStringVal: string) => {
-  return inputStringVal.toLowerCase();
+  let newEnglishText = '';
+  for (let i = 0; i < inputStringVal.length; i++) {
+    const ch = inputStringVal.charAt(i);
+    if (lowerCase.indexOf(ch) !== -1) {
+      newEnglishText += ch.toUpperCase();
+    } else {
+      newEnglishText += ch.toLowerCase();
+    }
+  }
+  return newEnglishText;
+  // return inputStringVal.toLowerCase(); => 입력값 모두 소문자로 변환
 };
 
 // 영어를 한글로 변환
@@ -21,9 +34,9 @@ export const eng2Kor = (src: string) => {
     return res;
   }
 
-  let initial = -1; //초성
-  let neutral = -1; //중성
-  let last = -1;		//종성
+  let initial = -1; // 초성
+  let neutral = -1; // 중성
+  let last = -1;		// 종성
 
   for (let i = 0; i < src.length; i++) {
     const ch = src.charAt(i);
