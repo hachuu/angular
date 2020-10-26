@@ -10,6 +10,7 @@ import { MainModule } from './main/main.module';
 import { FooterModule } from './footer/footer.module';
 import { HeaderModule } from './header/header.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     HeaderModule,
     FooterModule,
     MainModule,
+    LoginModule,
     FlexLayoutModule
   ],
   providers: [RestService],

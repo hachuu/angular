@@ -164,4 +164,22 @@ export class RestService {
     return this.http.get(`${this.GOOGLE_API}?orderBy=newest&q=${data}`) .pipe(map((books: any) => books.items || []));
   }
 
+  async doLogin() {
+    let params = new HttpParams();
+    params = params.set('query', 'end');
+    let res;
+
+    await this.http.get('http://localhost:8080/doLogin',
+    {
+      params: {},
+    })
+    .toPromise()
+    .then(response => {
+      res = response;
+      console.log(response);
+    })
+    .catch(console.log);
+    return res;
+  }
+
 }

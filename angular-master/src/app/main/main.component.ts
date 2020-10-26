@@ -19,7 +19,6 @@ export class MainComponent implements OnInit {
   public currentURL: string;
 
   constructor(
-    private service: RestService,
     private router: Router
   ) {
     this.currentURL = this.router.url;
