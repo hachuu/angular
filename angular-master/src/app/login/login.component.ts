@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RestService } from 'app/service/rest.service';
+import { LoginCheckService } from 'app/service/login.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +9,7 @@ import { RestService } from 'app/service/rest.service';
 export class LoginComponent implements OnInit {
 
   constructor(
-    private service: RestService,
+    private service: LoginCheckService,
   ) { }
 
   ngOnInit(): void {

@@ -5,6 +5,9 @@
   background-color: darkslategray;
   padding: 8px 12px;
   font-family: 'Secular One';
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 a {
   text-decoration: none;
