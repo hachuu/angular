@@ -16,6 +16,12 @@
     <li><a href="">Test</a></li> -->
   </ul>
   <ul [ngClass]="{'navbar__icons': true, 'active': showMenuList}">
+    <ng-container *ngIf="signIn else signOut">
+      <li><i class="fas fa-sign-out-alt" (click)="logOut()"></i></li>
+    </ng-container>
+    <ng-template #signOut>
+      <li><i class="fas fa-sign-in-alt" (click)="goLoginPage()"></i></li>
+    </ng-template>
     <li><i class="fab fa-github-square" (click)="goGitHub()"></i></li>
     <li><i class="fas fa-envelope-open" (click)="showEmailInfo()"></i></li>
   </ul>

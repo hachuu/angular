@@ -11,6 +11,7 @@ export class NavigationComponent implements OnInit {
   showMenuList = false;
 
   public openFlag = false;
+  public signIn = true; // 임시로 로그인 된 것 처럼
 
   @Input() menuList;
 
@@ -41,6 +42,15 @@ export class NavigationComponent implements OnInit {
   // 네비게이션바 토글
   clickToggleBtn() {
     this.showMenuList = !this.showMenuList;
+  }
+
+  // 로그인 페이지
+  goLoginPage() {
+    this.router.navigate(['/login']);
+  }
+
+  logOut() {
+    this.signIn = false;
   }
 
   goGitHub() {
