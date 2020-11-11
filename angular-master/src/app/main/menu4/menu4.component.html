@@ -6,15 +6,23 @@ google Api 호출 (도서 검색 test)
     </div>
 </div>
 <div class="result">검색 결과</div>
-<div *ngIf="!!bookTest$">
-  <div *ngFor="let item of bookTest$ | async">
-    <div (click)="openBookLayer(item)">
-      <span>{{item.volumeInfo.title}}</span>
+<ng-container *ngIf="!!bookTest$ else beforeSearching">
+  <div>
+    <div *ngFor="let item of bookTest$ | async">
+      <div (click)="openBookLayer(item)">
+        <span>{{item.volumeInfo.title}}</span>
+      </div>
     </div>
   </div>
-</div>
+</ng-container>
+<ng-template #beforeSearching>
+  <ng-container *ngIf="loading === undefined">
+    검색어를 입력하세요.
+  </ng-container>
+</ng-template>
 
 <app-book-layer *ngIf="!!bookInfo"
     [openFlag]="openFlag"
     [bookInfo]="bookInfo"
 ></app-book-layer>
+<app-loading [loading]="loading"></app-loading>

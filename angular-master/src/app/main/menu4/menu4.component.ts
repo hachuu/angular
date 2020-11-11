@@ -13,6 +13,7 @@ export class Menu4Component implements OnInit {
 
   public openFlag = false;
   public bookInfo;
+  public loading;
 
   constructor(
     private service: RestService,
@@ -22,7 +23,13 @@ export class Menu4Component implements OnInit {
   }
 
   getBook(data: string) {
+    this.loading = true;
     this.bookTest$ = this.service.getBookList(data);
+    this.bookTest$.subscribe( x => {
+      if (!!x) {
+        this.loading = false;
+      }
+    });
   }
 
   openBookLayer(book) {
